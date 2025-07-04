@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Spelling Game - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .home-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .config-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .config-item {
+            margin: 20px 0;
+        }
+        
+        .config-item label {
+            display: block;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .config-item input, .config-item select {
+            padding: 12px;
+            font-size: 1.1em;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+            text-align: center;
+        }
+        
+        .config-item input:focus, .config-item select:focus {
+            outline: none;
+            border-color: #4a90e2;
+            box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+        }
+        
+        .start-button {
+            background: linear-gradient(45deg, #4a90e2, #67b26f);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.4em;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .start-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .emoji {
+            font-size: 2em;
+            margin: 0 10px;
+        }
+        
+        .timer-preview {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="home-container">
+            <header>
+                <h1>🌟 Kids Spelling Game 🌟</h1>
+                <p>Configure your game settings and let's start learning!</p>
+            </header>
+
+            <div class="config-section">
+                <h2>👋 Welcome! What's your name?</h2>
+                <div class="config-item">
+                    <label for="player-name">Your Name:</label>
+                    <input type="text" id="player-name" placeholder="Enter your name" maxlength="20">
+                </div>
+            </div>
+
+            <div class="config-section">
+                <h2>🎯 Game Settings</h2>
+                
+                <div class="config-item">
+                    <label for="question-count">Number of Questions:</label>
+                    <select id="question-count">
+                        <option value="5">5 Questions</option>
+                        <option value="10">10 Questions</option>
+                        <option value="15">15 Questions</option>
+                        <option value="20">20 Questions</option>
+                        <option value="25" selected>25 Questions</option>
+                        <option value="30">30 Questions</option>
+                    </select>
+                </div>
+
+                <div class="config-item">
+                    <label for="timer-setting">Time per Question:</label>
+                    <select id="timer-setting">
+                        <option value="0">No Timer (Unlimited)</option>
+                        <option value="10">10 Seconds ⚡</option>
+                        <option value="15">15 Seconds 🏃</option>
+                        <option value="20">20 Seconds 🚶</option>
+                        <option value="30" selected>30 Seconds 🐌</option>
+                        <option value="45">45 Seconds 🏞️</option>
+                        <option value="60">60 Seconds 🧘</option>
+                    </select>
+                    <div class="timer-preview" id="timer-preview">
+                        Each question will have 30 seconds to answer
+                    </div>
+                </div>
+            </div>
+
+            <button class="start-button" id="start-game-btn" onclick="startGame()">
+                <span class="emoji">🚀</span>
+                Start Game
+                <span class="emoji">🎮</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Update timer preview text
+        document.getElementById('timer-setting').addEventListener('change', function() {
+            const timerValue = this.value;
+            const preview = document.getElementById('timer-preview');
+            
+            if (timerValue === '0') {
+                preview.textContent = 'Take your time! No time limit.';
+            } else {
+                preview.textContent = `Each question will have ${timerValue} seconds to answer`;
+            }
+        });
+
+        // Enable/disable start button based on name input
+        document.getElementById('player-name').addEventListener('input', function() {
+            const startBtn = document.getElementById('start-game-btn');
+            const name = this.value.trim();
+            
+            if (name.length >= 2) {
+                startBtn.disabled = false;
+                startBtn.textContent = `🚀 Start Game, ${name}! 🎮`;
+            } else {
+                startBtn.disabled = true;
+                startBtn.innerHTML = '<span class="emoji">🚀</span>Start Game<span class="emoji">🎮</span>';
+            }
+        });
+
+        // Start the game with configured settings
+        function startGame() {
+            const playerName = document.getElementById('player-name').value.trim();
+            const questionCount = parseInt(document.getElementById('question-count').value);
+            const timerSetting = parseInt(document.getElementById('timer-setting').value);
+
+            if (playerName.length < 2) {
+                alert('Please enter your name to start the game!');
+                document.getElementById('player-name').focus();
+                return;
+            }
+
+            // Store game configuration in sessionStorage
+            const gameConfig = {
+                playerName: playerName,
+                totalQuestions: questionCount,
+                timerSeconds: timerSetting,
+                currentQuestion: 0,
+                correctAnswers: 0,
+                gameStartTime: new Date().toISOString()
+            };
+
+            sessionStorage.setItem('gameConfig', JSON.stringify(gameConfig));
+
+            // Redirect to the game page
+            window.location.href = 'index.html';
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clear any existing game configuration
+            sessionStorage.removeItem('gameConfig');
+            
+            // Focus on name input
+            document.getElementById('player-name').focus();
+            
+            // Set initial button state
+            document.getElementById('start-game-btn').disabled = true;
+        });
+    </script>
+</body>
+</html>
