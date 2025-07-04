@@ -5,22 +5,30 @@ import com.example.kidsspellinggame.model.CheckResponse;
 import com.example.kidsspellinggame.model.Word;
 import com.example.kidsspellinggame.service.SpellingGameService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/api")
+@Controller
+@RequestMapping("/")
 @CrossOrigin(origins = "*")
 public class SpellingGameController {
 
     @Autowired
     private SpellingGameService spellingGameService;
 
-    @GetMapping("/word")
+    @GetMapping("/")
+    public String home() {
+        return "redirect:/home.html";
+    }
+
+    @GetMapping("/api/word")
+    @ResponseBody
     public Word getRandomWord() {
         return spellingGameService.getRandomWord();
     }
 
-    @PostMapping("/check")
+    @PostMapping("/api/check")
+    @ResponseBody
     public CheckResponse checkAnswer(@RequestBody CheckRequest request) {
         boolean isCorrect = spellingGameService.checkAnswer(request.getUserInput(), request.getOriginalWord());
         
