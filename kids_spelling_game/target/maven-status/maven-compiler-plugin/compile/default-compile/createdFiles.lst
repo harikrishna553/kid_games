@@ -1,7 +1,0 @@
-com/example/kidsspellinggame/controller/SpellingGameController.class
-com/example/kidsspellinggame/model/CheckRequest.class
-com/example/kidsspellinggame/model/Word.class
-com/example/kidsspellinggame/service/SpellingGameService.class
-com/example/kidsspellinggame/model/CheckResponse.class
-com/example/kidsspellinggame/KidsSpellingGameApplication.class
-com/example/kidsspellinggame/service/SpellingGameService$WordHint.class
