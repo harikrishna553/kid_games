@@ -3,6 +3,7 @@ let currentWord = null;
 let correctCount = 0;
 let totalCount = 0;
 let hintVisible = false;
+let consecutiveFailures = 0;
 
 // DOM Elements
 const scrambledWordEl = document.getElementById('scrambled-word');
@@ -14,6 +15,7 @@ const newWordBtn = document.getElementById('new-word-btn');
 const hintBtn = document.getElementById('hint-btn');
 const correctCountEl = document.getElementById('correct-count');
 const totalCountEl = document.getElementById('total-count');
+const accuracyPercentageEl = document.getElementById('accuracy-percentage');
 
 // Initialize the game
 document.addEventListener('DOMContentLoaded', function() {
@@ -108,10 +110,13 @@ async function checkAnswer() {
         totalCount++;
         if (result.correct) {
             correctCount++;
+            consecutiveFailures = 0;
+        } else {
+            consecutiveFailures++;
         }
         updateScore();
         
-        // Show result
+        // Show result with sounds
         showResult(result.message, result.correct);
         
         // If correct, automatically get a new word after a delay
@@ -160,6 +165,10 @@ function toggleHint() {
 function updateScore() {
     correctCountEl.textContent = correctCount;
     totalCountEl.textContent = totalCount;
+    
+    // Calculate and display accuracy percentage
+    const accuracy = totalCount > 0 ? Math.round((correctCount / totalCount) * 100) : 0;
+    accuracyPercentageEl.textContent = accuracy + '%';
 }
 
 // Show loading state
@@ -177,8 +186,36 @@ function showLoading(isLoading) {
     }
 }
 
-// Add some fun sound effects (optional - using Web Audio API)
+// Add some fun sound effects using Web Audio API
 function playSuccessSound() {
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Play a "Hurray" melody with ascending notes
+        const frequencies = [523.25, 659.25, 783.99]; // C5, E5, G5 (major chord)
+        
+        frequencies.forEach((freq, index) => {
+            setTimeout(() => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = freq;
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.4);
+            }, index * 100);
+        });
+    } catch (error) {
+        // Ignore audio errors
+    }
+}
+
+function playFailSound() {
     try {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         const oscillator = audioContext.createOscillator();
@@ -187,12 +224,40 @@ function playSuccessSound() {
         oscillator.connect(gainNode);
         gainNode.connect(audioContext.destination);
         
-        oscillator.frequency.value = 523.25; // C5 note
-        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+        oscillator.frequency.value = 220; // A3 note (lower, sadder sound)
+        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
         
         oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + 0.5);
+        oscillator.stop(audioContext.currentTime + 0.3);
+    } catch (error) {
+        // Ignore audio errors
+    }
+}
+
+function playConsecutiveFailSound() {
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Play three descending notes for consecutive failures
+        const frequencies = [330, 277, 220]; // E4, C#4, A3
+        
+        frequencies.forEach((freq, index) => {
+            setTimeout(() => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = freq;
+                gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.2);
+            }, index * 150);
+        });
     } catch (error) {
         // Ignore audio errors
     }
@@ -243,7 +308,7 @@ function createConfetti(color) {
     animate();
 }
 
-// Enhanced result showing with animations
+// Enhanced result showing with animations and sounds
 function showResult(message, isCorrect) {
     resultEl.textContent = message;
     resultEl.className = 'result-message ' + (isCorrect ? 'correct' : 'incorrect');
@@ -253,6 +318,12 @@ function showResult(message, isCorrect) {
         celebrateCorrectAnswer();
         userInputEl.value = '';
     } else {
+        // Play different sounds based on consecutive failures
+        if (consecutiveFailures >= 3) {
+            playConsecutiveFailSound();
+        } else {
+            playFailSound();
+        }
         userInputEl.select();
     }
 }
