@@ -1,1 +1,32 @@
-Alphabet,Button,Click,Computer,Desktop,Device,Document,Explore,Jumble,Keyboard,Menu,Numbers,Symbol,Text
+Alphabet:A set of letters used in writing a language
+Arrow:A symbol or key used to move the cursor in a direction
+Backspace:A key used to delete the character to the left
+Blinking:Flashing on and off, like a cursor
+Button:A clickable element on a screen or device
+Caps Lock:A key that makes all letters uppercase
+Click:To press and release a mouse button
+Computer:A machine that processes data and information
+Created:Made or brought into existence
+Cursor:A moving indicator on a screen
+Desktop:The main screen of a computer
+Device:An electronic tool or gadget
+Document:A file containing text or information
+Erase:To remove or delete something
+Explore:To search through and discover
+File:A digital document stored on a computer
+Jumble:To mix up or scramble things
+Keyboard:A device with keys for typing
+Left:The direction opposite to right
+Letter:A character in the alphabet
+Menu:A list of choices or options
+Move:To change position from one place to another
+Numbers:Symbols representing quantities
+Practice:To do something repeatedly to improve
+Right:The direction opposite to left
+Shift:A key that changes the case of letters
+Space bar:A long key used to create spaces
+Symbol:A character or sign representing something
+Text:Written words or letters
+Through:From one side to the other
+Typing:The act of pressing keys to write
+Upper:Higher in position or case
