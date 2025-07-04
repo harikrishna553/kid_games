@@ -10,7 +10,16 @@
     <div class="container">
         <header>
             <h1>🌟 Kids Spelling Game 🌟</h1>
-            <p>Fill in the missing letters to complete the word!</p>
+            <div class="game-info">
+                <span id="player-greeting">Fill in the missing letters to complete the word!</span>
+                <div class="progress-info">
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                        <span class="progress-text">Question <span id="current-question">1</span> of <span id="total-questions">∞</span></span>
+                    </div>
+                    <span id="timer-display" class="timer-display" style="display: none;">⏰ <span id="timer-countdown">30</span>s</span>
+                </div>
+            </div>
         </header>
 
         <div class="game-area">
@@ -35,6 +44,7 @@
             <div class="controls">
                 <button id="new-word-btn" onclick="getNewWord()">New Word</button>
                 <button id="hint-btn" onclick="toggleHint()">Show/Hide Hint</button>
+                <button id="quit-game-btn" onclick="quitGame()" style="background: #e74c3c;">Quit Game</button>
             </div>
         </div>
 
@@ -50,6 +60,16 @@
             <div class="score-item">
                 <span>Accuracy: </span>
                 <span id="accuracy-percentage">0%</span>
+            </div>
+        </div>
+
+        <!-- Game Over Modal -->
+        <div id="game-over-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2>🎉 Game Complete! 🎉</h2>
+                <div id="final-results"></div>
+                <button onclick="playAgain()">Play Again</button>
+                <button onclick="goHome()">Home</button>
             </div>
         </div>
     </div>
