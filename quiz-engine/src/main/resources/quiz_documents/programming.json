@@ -1,0 +1,89 @@
+{
+  "title": "Programming Quiz",
+  "subject": "Computer Science",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "P1",
+      "question": "Which of the following are object-oriented programming languages?",
+      "hint": "Think about languages that support classes and objects",
+      "answerType": "multi",
+      "choices": [
+        "Java",
+        "C",
+        "Python",
+        "Assembly",
+        "C#"
+      ],
+      "answerPositions": [0, 2, 4],
+      "explanations": ["Java, Python, and C# are object-oriented programming languages. C is procedural and Assembly is low-level."],
+      "image": null,
+      "tags": ["programming", "oop", "languages", "medium"]
+    },
+    {
+      "id": "P2",
+      "question": "What does HTML stand for?",
+      "hint": "It's about marking up text for web pages",
+      "answerType": "single",
+      "choices": [
+        "Hyper Text Markup Language",
+        "Home Tool Markup Language",
+        "Hyperlinks and Text Markup Language",
+        "High Tech Modern Language"
+      ],
+      "answerPositions": [0],
+      "explanations": ["HTML stands for Hyper Text Markup Language, used for creating web pages."],
+      "image": null,
+      "tags": ["html", "web", "markup", "easy"]
+    },
+    {
+      "id": "P3",
+      "question": "Which data structure uses LIFO (Last In, First Out)?",
+      "hint": "Think about a pile of plates",
+      "answerType": "single",
+      "choices": [
+        "Queue",
+        "Stack",
+        "Array",
+        "Linked List"
+      ],
+      "answerPositions": [1],
+      "explanations": ["A Stack uses LIFO (Last In, First Out) principle, like a pile of plates."],
+      "image": null,
+      "tags": ["data structures", "stack", "lifo", "medium"]
+    },
+    {
+      "id": "P4",
+      "question": "What is the time complexity of binary search?",
+      "hint": "It divides the search space in half each time",
+      "answerType": "single",
+      "choices": [
+        "O(n)",
+        "O(log n)",
+        "O(n log n)",
+        "O(n²)"
+      ],
+      "answerPositions": [1],
+      "explanations": ["Binary search has O(log n) time complexity because it divides the search space by half in each iteration."],
+      "image": null,
+      "tags": ["algorithms", "complexity", "search", "medium"]
+    },
+    {
+      "id": "P5",
+      "question": "Which of these are valid JavaScript variable declarations?",
+      "hint": "JavaScript has multiple ways to declare variables",
+      "answerType": "multi",
+      "choices": [
+        "var name = 'John';",
+        "let age = 25;",
+        "const PI = 3.14;",
+        "int count = 0;",
+        "string message = 'Hello';"
+      ],
+      "answerPositions": [0, 1, 2],
+      "explanations": ["var, let, and const are valid JavaScript variable declarations. int and string are not JavaScript keywords."],
+      "image": null,
+      "tags": ["javascript", "variables", "syntax", "easy"]
+    }
+  ]
+}

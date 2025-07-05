@@ -1,0 +1,88 @@
+{
+  "title": "Geography Quiz",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "G1",
+      "question": "What is the largest continent?",
+      "hint": "It includes countries like China, India, and Russia",
+      "answerType": "single",
+      "choices": [
+        "Africa",
+        "Asia",
+        "North America",
+        "Europe"
+      ],
+      "answerPositions": [1],
+      "explanations": ["Asia is the largest continent by both area and population."],
+      "image": null,
+      "tags": ["continents", "size", "geography", "easy"]
+    },
+    {
+      "id": "G2",
+      "question": "Which river is the longest in the world?",
+      "hint": "It flows through Egypt and several other African countries",
+      "answerType": "single",
+      "choices": [
+        "Amazon River",
+        "Nile River",
+        "Mississippi River",
+        "Yangtze River"
+      ],
+      "answerPositions": [1],
+      "explanations": ["The Nile River is traditionally considered the longest river in the world at about 4,135 miles."],
+      "image": null,
+      "tags": ["rivers", "africa", "geography", "medium"]
+    },
+    {
+      "id": "G3",
+      "question": "Which countries border the United States?",
+      "hint": "One is north, one is south",
+      "answerType": "multi",
+      "choices": [
+        "Canada",
+        "Mexico",
+        "Russia",
+        "Cuba",
+        "Guatemala"
+      ],
+      "answerPositions": [0, 1],
+      "explanations": ["The United States borders Canada to the north and Mexico to the south."],
+      "image": null,
+      "tags": ["borders", "usa", "geography", "easy"]
+    },
+    {
+      "id": "G4",
+      "question": "What is the capital of Australia?",
+      "hint": "It's not Sydney or Melbourne",
+      "answerType": "single",
+      "choices": [
+        "Sydney",
+        "Melbourne",
+        "Canberra",
+        "Perth"
+      ],
+      "answerPositions": [2],
+      "explanations": ["Canberra is the capital of Australia, even though Sydney and Melbourne are larger cities."],
+      "image": null,
+      "tags": ["capitals", "australia", "geography", "medium"]
+    },
+    {
+      "id": "G5",
+      "question": "Which mountain range contains Mount Everest?",
+      "hint": "This range is in Asia, between India and Tibet",
+      "answerType": "single",
+      "choices": [
+        "Rocky Mountains",
+        "Andes Mountains",
+        "Himalayas",
+        "Alps"
+      ],
+      "answerPositions": [2],
+      "explanations": ["Mount Everest is located in the Himalayas, on the border between Nepal and Tibet."],
+      "image": null,
+      "tags": ["mountains", "everest", "himalayas", "medium"]
+    }
+  ]
+}

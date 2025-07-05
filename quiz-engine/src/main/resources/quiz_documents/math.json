@@ -1,0 +1,88 @@
+{
+  "title": "Math Quiz",
+  "subject": "Mathematics",
+  "difficulty": "easy",
+  "questions": [
+    {
+      "id": "M1",
+      "question": "What is 2 + 2?",
+      "hint": "It's the first even number after 3",
+      "answerType": "single",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answerPositions": [1],
+      "explanations": ["Two plus two equals four. This is basic addition."],
+      "image": null,
+      "tags": ["addition", "math", "easy"]
+    },
+    {
+      "id": "M2",
+      "question": "Which of the following are even numbers?",
+      "hint": "Even numbers are divisible by 2",
+      "answerType": "multi",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answerPositions": [0, 2, 4],
+      "explanations": ["Even numbers are 2, 4, and 6. They are all divisible by 2 with no remainder."],
+      "image": null,
+      "tags": ["even", "numbers", "math", "medium"]
+    },
+    {
+      "id": "M3",
+      "question": "What is 5 × 3?",
+      "hint": "Think of 5 groups of 3 items each",
+      "answerType": "single",
+      "choices": [
+        "12",
+        "15",
+        "18",
+        "20"
+      ],
+      "answerPositions": [1],
+      "explanations": ["Five times three equals fifteen. This is basic multiplication."],
+      "image": null,
+      "tags": ["multiplication", "math", "easy"]
+    },
+    {
+      "id": "M4",
+      "question": "What is 20 ÷ 4?",
+      "hint": "How many groups of 4 can you make from 20?",
+      "answerType": "single",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "8"
+      ],
+      "answerPositions": [1],
+      "explanations": ["Twenty divided by four equals five."],
+      "image": null,
+      "tags": ["division", "math", "easy"]
+    },
+    {
+      "id": "M5",
+      "question": "Which number comes next in the sequence: 2, 4, 6, 8, ?",
+      "hint": "Look at the pattern - each number increases by 2",
+      "answerType": "single",
+      "choices": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "answerPositions": [1],
+      "explanations": ["The sequence increases by 2 each time, so after 8 comes 10."],
+      "image": null,
+      "tags": ["patterns", "sequences", "math", "medium"]
+    }
+  ]
+}

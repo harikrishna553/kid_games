@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game Engine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .quiz-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background: #f9f9f9;
+        }
+
+        .quiz-selection-header {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .select-all-btn, .clear-all-btn {
+            padding: 5px 12px;
+            border: 1px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .select-all-btn:hover, .clear-all-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .quiz-count {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .quiz-option input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .number-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .number-btn {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .number-btn:hover, .number-btn.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .time-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .time-btn {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .time-btn:hover, .time-btn.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .start-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 20px;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .start-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🎮</div>
+        <h1>Quiz Game Engine</h1>
+        
+        <form id="gameForm">
+            <div class="form-group">
+                <label for="username">Your Name:</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your name">
+            </div>
+
+            <div class="form-group">
+                <label>Select Quiz Topics:</label>
+                <div class="quiz-selection-header">
+                    <button type="button" class="select-all-btn" onclick="selectAllQuizzes()">Select All</button>
+                    <button type="button" class="clear-all-btn" onclick="clearAllQuizzes()">Clear All</button>
+                </div>
+                <div class="quiz-selection" id="quizSelection">
+                    <div class="quiz-option" th:each="quiz : ${availableQuizzes}">
+                        <input type="checkbox" th:id="'quiz_' + ${quiz}" th:value="${quiz}" name="quizzes">
+                        <label th:for="'quiz_' + ${quiz}" th:text="${quiz}"></label>
+                    </div>
+                </div>
+                <div class="quiz-count" id="quizCount">0 quizzes selected</div>
+            </div>
+
+            <div class="form-group">
+                <label>Number of Questions:</label>
+                <div class="number-buttons">
+                    <div class="number-btn" data-value="5">5</div>
+                    <div class="number-btn" data-value="10">10</div>
+                    <div class="number-btn" data-value="25">25</div>
+                    <div class="number-btn" data-value="50">50</div>
+                    <div class="number-btn" data-value="100">100</div>
+                </div>
+                <input type="hidden" id="numberOfQuestions" name="numberOfQuestions" value="10">
+            </div>
+
+            <div class="form-group">
+                <label>Time per Question (seconds):</label>
+                <div class="time-buttons">
+                    <div class="time-btn" data-value="30">30s</div>
+                    <div class="time-btn" data-value="60">60s</div>
+                    <div class="time-btn" data-value="90">90s</div>
+                    <div class="time-btn" data-value="120">2min</div>
+                </div>
+                <input type="hidden" id="timePerQuestion" name="timePerQuestion" value="60">
+            </div>
+
+            <button type="submit" class="start-btn">Start Quiz</button>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Starting your quiz...</p>
+        </div>
+    </div>
+
+    <script>
+        // Initialize default selections
+        document.querySelector('.number-btn[data-value="10"]').classList.add('selected');
+        document.querySelector('.time-btn[data-value="60"]').classList.add('selected');
+
+        // Handle number selection
+        document.querySelectorAll('.number-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.number-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('numberOfQuestions').value = this.dataset.value;
+            });
+        });
+
+        // Handle time selection
+        document.querySelectorAll('.time-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('timePerQuestion').value = this.dataset.value;
+            });
+        });
+
+        // Handle quiz selection changes
+        document.addEventListener('change', function(e) {
+            if (e.target.name === 'quizzes') {
+                updateQuizCount();
+            }
+        });
+
+        function selectAllQuizzes() {
+            document.querySelectorAll('input[name="quizzes"]').forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            updateQuizCount();
+        }
+
+        function clearAllQuizzes() {
+            document.querySelectorAll('input[name="quizzes"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            updateQuizCount();
+        }
+
+        function updateQuizCount() {
+            const selectedCount = document.querySelectorAll('input[name="quizzes"]:checked').length;
+            const totalCount = document.querySelectorAll('input[name="quizzes"]').length;
+            document.getElementById('quizCount').textContent = `${selectedCount} of ${totalCount} quizzes selected`;
+        }
+
+        // Initialize quiz count
+        document.addEventListener('DOMContentLoaded', function() {
+            updateQuizCount();
+        });
+
+        // Form submission
+        document.getElementById('gameForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const username = formData.get('username');
+            const selectedQuizzes = Array.from(formData.getAll('quizzes'));
+            const numberOfQuestions = formData.get('numberOfQuestions');
+            const timePerQuestion = formData.get('timePerQuestion');
+
+            if (!username.trim()) {
+                alert('Please enter your name');
+                return;
+            }
+
+            if (selectedQuizzes.length === 0) {
+                alert('Please select at least one quiz topic');
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+            this.style.display = 'none';
+
+            // Play welcome sound and TTS greeting
+            playWelcomeSound();
+            speakText(`Welcome ${username}! Let's start your quiz adventure!`);
+
+            try {
+                const response = await fetch('/start-game', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        quizToConsider: selectedQuizzes.join(','),
+                        numberOfQuestions: numberOfQuestions,
+                        timePerQuestion: timePerQuestion
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    window.location.href = `/game/${result.sessionId}`;
+                } else {
+                    alert('Failed to start game: ' + result.message);
+                    document.getElementById('loading').style.display = 'none';
+                    this.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error starting game:', error);
+                alert('Failed to start game. Please try again.');
+                document.getElementById('loading').style.display = 'none';
+                this.style.display = 'block';
+            }
+        });
+
+        function playWelcomeSound() {
+            // Create a simple welcome sound using Web Audio API
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+            oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.2); // E5
+            oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.4); // G5
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.8);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.8);
+        }
+
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.8;
+                utterance.pitch = 1.2;
+                utterance.volume = 0.8;
+                speechSynthesis.speak(utterance);
+            }
+        }
+    </script>
+</body>
+</html>

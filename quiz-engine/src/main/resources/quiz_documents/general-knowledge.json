@@ -1,0 +1,92 @@
+{
+  "title": "General Knowledge",
+  "subject": "Trivia",
+  "difficulty": "easy",
+  "questions": [
+    {
+      "id": "GK1",
+      "question": "What is the capital of France?",
+      "hint": "It's known as the City of Light",
+      "answerType": "single",
+      "choices": [
+        "London",
+        "Paris",
+        "Rome",
+        "Madrid"
+      ],
+      "answerPositions": [1],
+      "explanations": ["Paris is the capital and largest city of France."],
+      "image": null,
+      "tags": ["geography", "capitals", "france", "easy"]
+    },
+    {
+      "id": "GK2",
+      "question": "Which colors make up the rainbow?",
+      "hint": "Remember ROYGBIV",
+      "answerType": "multi",
+      "choices": [
+        "Red",
+        "Orange",
+        "Yellow",
+        "Green",
+        "Blue",
+        "Indigo",
+        "Violet",
+        "Pink"
+      ],
+      "answerPositions": [0, 1, 2, 3, 4, 5, 6],
+      "explanations": ["The rainbow colors are Red, Orange, Yellow, Green, Blue, Indigo, Violet (ROYGBIV). Pink is not a rainbow color."],
+      "image": null,
+      "tags": ["colors", "rainbow", "science", "easy"]
+    },
+    {
+      "id": "GK3",
+      "question": "How many days are there in a leap year?",
+      "hint": "It's more than a regular year",
+      "answerType": "single",
+      "choices": [
+        "365",
+        "366",
+        "367",
+        "364"
+      ],
+      "answerPositions": [1],
+      "explanations": ["A leap year has 366 days, with an extra day added to February."],
+      "image": null,
+      "tags": ["calendar", "time", "leap year", "easy"]
+    },
+    {
+      "id": "GK4",
+      "question": "What is the largest ocean on Earth?",
+      "hint": "It's between Asia and the Americas",
+      "answerType": "single",
+      "choices": [
+        "Atlantic Ocean",
+        "Pacific Ocean",
+        "Indian Ocean",
+        "Arctic Ocean"
+      ],
+      "answerPositions": [1],
+      "explanations": ["The Pacific Ocean is the largest ocean on Earth, covering about one-third of the planet's surface."],
+      "image": null,
+      "tags": ["geography", "oceans", "earth", "easy"]
+    },
+    {
+      "id": "GK5",
+      "question": "Which instruments belong to the string family?",
+      "hint": "They produce sound by vibrating strings",
+      "answerType": "multi",
+      "choices": [
+        "Violin",
+        "Piano",
+        "Guitar",
+        "Trumpet",
+        "Cello"
+      ],
+      "answerPositions": [0, 2, 4],
+      "explanations": ["Violin, Guitar, and Cello are string instruments. Piano uses hammers on strings but is classified as percussion. Trumpet is a brass instrument."],
+      "image": null,
+      "tags": ["music", "instruments", "strings", "medium"]
+    }
+  ]
+}
