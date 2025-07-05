@@ -1,0 +1,87 @@
+{
+  "title": "History Quiz",
+  "subject": "History",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "H1",
+      "question": "Who was the first President of the United States?",
+      "hint": "He's on the $1 bill and the quarter",
+      "answerType": "single",
+      "choices": [
+        "Thomas Jefferson",
+        "George Washington",
+        "John Adams",
+        "Benjamin Franklin"
+      ],
+      "answerPositions": [1],
+      "explanations": ["George Washington was the first President of the United States, serving from 1789 to 1797."],
+      "image": null,
+      "tags": ["presidents", "america", "history", "easy"]
+    },
+    {
+      "id": "H2",
+      "question": "In which year did World War II end?",
+      "hint": "It ended in the 1940s, after the atomic bombs were dropped",
+      "answerType": "single",
+      "choices": [
+        "1944",
+        "1945",
+        "1946",
+        "1947"
+      ],
+      "answerPositions": [1],
+      "explanations": ["World War II ended in 1945 with the surrender of Japan in September."],
+      "image": null,
+      "tags": ["world war", "1940s", "history", "medium"]
+    },
+    {
+      "id": "H3",
+      "question": "Which ancient wonder of the world still stands today?",
+      "hint": "It's in Egypt and has a sphinx nearby",
+      "answerType": "single",
+      "choices": [
+        "Hanging Gardens of Babylon",
+        "Great Pyramid of Giza",
+        "Colossus of Rhodes",
+        "Lighthouse of Alexandria"
+      ],
+      "answerPositions": [1],
+      "explanations": ["The Great Pyramid of Giza is the only ancient wonder of the world that still stands today."],
+      "image": null,
+      "tags": ["ancient", "egypt", "pyramids", "medium"]
+    },
+    {
+      "id": "H4",
+      "question": "Who painted the Mona Lisa?",
+      "hint": "This Italian artist was also an inventor and scientist",
+      "answerType": "single",
+      "choices": [
+        "Michelangelo",
+        "Leonardo da Vinci",
+        "Raphael",
+        "Donatello"
+      ],
+      "answerPositions": [1],
+      "explanations": ["Leonardo da Vinci painted the Mona Lisa, one of the most famous paintings in the world."],
+      "image": null,
+      "tags": ["art", "renaissance", "painting", "medium"]
+    },
+    {
+      "id": "H5",
+      "question": "Which empire was ruled by Julius Caesar?",
+      "hint": "This empire's capital was Rome",
+      "answerType": "single",
+      "choices": [
+        "Greek Empire",
+        "Roman Empire",
+        "Egyptian Empire",
+        "Persian Empire"
+      ],
+      "answerPositions": [1],
+      "explanations": ["Julius Caesar was a leader of the Roman Empire, though he was assassinated before becoming emperor."],
+      "image": null,
+      "tags": ["rome", "caesar", "empire", "medium"]
+    }
+  ]
+}

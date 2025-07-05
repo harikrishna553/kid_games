@@ -1,0 +1,89 @@
+{
+  "title": "Science Quiz",
+  "subject": "Science",
+  "difficulty": "easy",
+  "questions": [
+    {
+      "id": "S1",
+      "question": "What do plants need to make their food?",
+      "hint": "Think about photosynthesis",
+      "answerType": "multi",
+      "choices": [
+        "Sunlight",
+        "Water",
+        "Carbon dioxide",
+        "Chocolate",
+        "Soil nutrients"
+      ],
+      "answerPositions": [0, 1, 2, 4],
+      "explanations": ["Plants need sunlight, water, carbon dioxide, and soil nutrients for photosynthesis. Chocolate is not needed!"],
+      "image": null,
+      "tags": ["plants", "photosynthesis", "biology", "easy"]
+    },
+    {
+      "id": "S2",
+      "question": "How many legs does a spider have?",
+      "hint": "Count carefully - more than 6 but less than 10",
+      "answerType": "single",
+      "choices": [
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      "answerPositions": [1],
+      "explanations": ["Spiders have 8 legs. This is what makes them arachnids, not insects."],
+      "image": null,
+      "tags": ["animals", "spiders", "biology", "easy"]
+    },
+    {
+      "id": "S3",
+      "question": "What is the closest planet to the Sun?",
+      "hint": "It's named after the Roman messenger god",
+      "answerType": "single",
+      "choices": [
+        "Venus",
+        "Mercury",
+        "Earth",
+        "Mars"
+      ],
+      "answerPositions": [1],
+      "explanations": ["Mercury is the closest planet to the Sun in our solar system."],
+      "image": null,
+      "tags": ["planets", "solar system", "astronomy", "easy"]
+    },
+    {
+      "id": "S4",
+      "question": "What are the three states of matter?",
+      "hint": "Think about ice, water, and steam",
+      "answerType": "multi",
+      "choices": [
+        "Solid",
+        "Liquid",
+        "Gas",
+        "Plasma",
+        "Energy"
+      ],
+      "answerPositions": [0, 1, 2],
+      "explanations": ["The three basic states of matter are solid, liquid, and gas. Plasma is a fourth state, and energy is not a state of matter."],
+      "image": null,
+      "tags": ["matter", "states", "physics", "medium"]
+    },
+    {
+      "id": "S5",
+      "question": "What gas do we breathe in to live?",
+      "hint": "It makes up about 21% of the air around us",
+      "answerType": "single",
+      "choices": [
+        "Carbon dioxide",
+        "Oxygen",
+        "Nitrogen",
+        "Hydrogen"
+      ],
+      "answerPositions": [1],
+      "explanations": ["We breathe in oxygen to live. Our bodies need oxygen for cellular respiration."],
+      "image": null,
+      "tags": ["breathing", "oxygen", "biology", "easy"]
+    }
+  ]
+}
